@@ -20,7 +20,7 @@ pip install -r requirements.txt
 
 `--time-out TIME_OUT` Optional. Timeout for each request in seconds (default: 5)
 
-`--max-search MAX_SEARCH` Optional. Maximum .md file searches. When reached, force exit
+`--max-search MAX_SEARCH` Optional. Maximum .md file searches. When reached, force exit (default: 0)
 
 ## Usage
 To use the script, you need to specify the url of the GitHub repository you want to check using the `--url` parameter. For example:
@@ -34,6 +34,7 @@ python script.py --url URL
 - Make sure to have sufficient storage space for the repo
 - This script may take a while when there are a lot of URLs to check
 - `--time-out` sets to 0 means no timeout
+- `--max-search` sets to 0 means no maximum
 - Due to the nature of the internet, the script may produce false positive results
 
 ## License
