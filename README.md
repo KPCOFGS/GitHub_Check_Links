@@ -6,8 +6,8 @@ A script that will clone a GitHub repo to local computer, and then find all .md 
 
 You can download the script using `git`
 ```bash
-git clone https://github.com/KPCOFGS/Check_Links.git
-cd Check_Links
+https://github.com/KPCOFGS/GitHub_Check_Links.git
+cd GitHub_Check_Links
 ```
 You can install the dependencies using pip:
 ```bash
@@ -22,6 +22,8 @@ python script.py --url URL [--time-out OPTIONAL-INTEGER]
 
 ## Note
 - This script only checks for `https` links and relative paths
+- The script may take a while to clone the repository
+- Make sure to have sufficient storage space for the repo
 - This script may take a while when there are a lot of URLs to check
 - `--time-out` sets to 0 means no timeout
 - Due to the nature of the internet, the script may produce false positive results
