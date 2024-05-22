@@ -14,10 +14,18 @@ You can install the dependencies using pip:
 pip install -r requirements.txt
 ```
 
+## Parameters
+
+`--url URL` Required. GitHub repository url
+
+`--time-out TIME_OUT` Optional. Timeout for each request in seconds (default: 5)
+
+`--max-search MAX_SEARCH` Optional. Maximum .md file searches. When reached, force exit
+
 ## Usage
-To use the script, you need to specify the url of the website you want to check using the `--url` parameter. For example:
+To use the script, you need to specify the url of the GitHub repository you want to check using the `--url` parameter. For example:
 ```bash
-python script.py --url URL [--time-out OPTIONAL-INTEGER]
+python script.py --url URL
 ```
 
 ## Note
