@@ -34,7 +34,7 @@ def extract_text_from_github(url):
 parser = argparse.ArgumentParser(description="Check links in an HTML article")
 parser.add_argument("--url", help="URL to check links in", required=True)
 parser.add_argument("--time-out", type=int, help="Timeout for each request in seconds", default=5)
-parser.add_argument("--max-search", type=int, help="Maximum link searches. When reached, force exit", default=0)
+parser.add_argument("--max-search", type=int, help="Maximum .md file searches. When reached, force exit", default=0)
 args = parser.parse_args()
 url = args.url
 time_out = args.time_out
