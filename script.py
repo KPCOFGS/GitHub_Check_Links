@@ -18,7 +18,7 @@ def find_md_files(repo_url, user, repo, branch):
                 md_files.add(final_url)
     return md_files
 def extract_text_from_github(url):
-    response = requests.get(url)
+    response = requests.get(url, headers={"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3"})
     if response.status_code == 200:
         soup = BeautifulSoup(response.text, 'html.parser')
         # Find the specified tag and extract text within it
