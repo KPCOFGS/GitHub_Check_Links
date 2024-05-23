@@ -25,7 +25,7 @@ def find_links_in_article(html_content, url):
     set_links.update(re.findall(r'href=[\'"]?(https://[^\'" >]+)', str(article)))
     return set_links
 def check_links_in_article(url, timeout):
-    response = requests.get(url, timeout=timeout, allow_redirects=True)
+    response = requests.get(url, timeout=timeout, allow_redirects=True, headers={"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3"})
     links = find_links_in_article(response.text, url)
     for link in links:
         check_link(link, timeout)
