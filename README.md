@@ -1,7 +1,5 @@
 # GitHub_Check_Links
 
-Inspired by [Check_Links](https://github.com/KPCOFGS/Check_Links)
-
 A script that will clone a GitHub repo to local computer, and then find all .md files except for RELEASE.md or other similar files that would have too many links. Then, the script will use that .md file path and convert it to GitHub url and checks the URL links in `<article>` tags to see if they are valid
 
 ## Download
