@@ -17,19 +17,40 @@ def check_link(link, timeout, value):
     except requests.Timeout:
         for i in range(value):
             print(f"Timeout Error: {link}")
+def is_downloadable(url):
+    try:
+        response = requests.head(url, allow_redirects=True)
+        content_disposition = response.headers.get('Content-Disposition', '')
+
+        # Check if Content-Disposition indicates a download attachment
+        if content_disposition.lower().startswith('attachment'):
+            return True
+
+        return False
+
+    except requests.RequestException:
+        return False
+
 def find_links_in_article(html_content, url):
     parsed_url = urlparse(url)
     root_url = parsed_url.scheme + "://" + parsed_url.netloc
     links_dict = defaultdict(int)
     soup = BeautifulSoup(html_content, 'html.parser')
     article = soup.find('article')
-    relative_paths = re.findall(r'href=[\'"]?(/[^\'" >]+)', str(article))
-    if relative_paths:
-        for i in relative_paths:
-            links_dict[root_url+i] += 1
-    absolute_paths = re.findall(r'href=[\'"]?(https://[^\'" >]+)', str(article))
-    for i in absolute_paths:
-        links_dict[i] += 1
+
+    if article:
+        relative_paths = re.findall(r'href=[\'"]?(/[^\'" >]+)', str(article))
+        if relative_paths:
+            for path in relative_paths:
+                full_url = root_url + path
+                if not is_downloadable(full_url):
+                    links_dict[full_url] += 1
+
+        absolute_paths = re.findall(r'href=[\'"]?(https://[^\'" >]+)', str(article))
+        for url in absolute_paths:
+            if not is_downloadable(url):
+                links_dict[url] += 1
+
     return links_dict
 def check_links_in_article(url, timeout):
     response = requests.get(url, timeout=timeout, allow_redirects=True, headers={"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3"})
